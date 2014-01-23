@@ -1,7 +1,7 @@
 root alias loader (thumbor-ral) (c) 2014 DNA11 Inc.
 
 
-# Thumbor-ral
+# Thumbor-ral [<img src="https://secure.travis-ci.org/canvaspop/thumbor-ral.png?branch=master">](http://travis-ci.org/canvaspop/thumbor-ral)
 Under the hood, thumbor-ral uses the existing `http_loader` module to fetch the image.
 The `http_loader` module will need to be properly configured.
 
