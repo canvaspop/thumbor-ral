@@ -7,7 +7,6 @@
 
     Overloads the thumbor's http_loader.
 """
-
 from thumbor.loaders import http_loader
 
 
@@ -18,16 +17,32 @@ def validate(context, url):
     """Validate a url. Pass through function to http_loader.validate
     """
 
-    url = _prepare(url)
+    url = _prepare(context, url)
+    if url is False:
+        return False
+
     return http_loader.validate(context, url)
 
 
 def _prepare(context, url):
     """Prepare a url, replacing the root alias with the real url.
+
+    Reads the ROOT_ALIAS_LOADER_URLS config dictionary, looking
     """
 
-    #TODO replace the #bucket_id# with the bucket root url.
-    return url
+    config = context.config.ROOT_ALIAS_LOADER_URLS
+
+    parts = url.split('/', 1)
+    if len(parts) != 2:
+        return False
+
+    alias = config.get(parts[0], None)
+    if alias is None:
+        return False
+
+    parts[0] = alias
+
+    return "/".join(parts)
 
 
 def load(context, url, callback):
