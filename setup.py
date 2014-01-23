@@ -17,7 +17,7 @@ setup(
     name='thumbor-root-alias-loader',
     version='0.1',
     url='http://www.crated.com',
-    license='Copyright 2014 Canvaspop',
+    license='Copyright 2014 DNA11 Inc.',
     author='Martin Samson',
     author_email='martin@canvaspop.com',
     maintainer='Martin Samson',

@@ -1,4 +1,4 @@
-root alias loader (thumbor-ral) (c) 2014 Canvaspop
+root alias loader (thumbor-ral) (c) 2014 DNA11 Inc.
 
 
 # Thumbor-ral
