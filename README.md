@@ -1,9 +1,7 @@
-root alias loader (thumbor-ral)
-
-(c) 2014 Canvaspop
+root alias loader (thumbor-ral) (c) 2014 Canvaspop
 
 
-# Thumbor-ral'
+# Thumbor-ral
 Under the hood, thumbor-ral uses the existing `http_loader` module to fetch the image.
 The `http_loader` module will need to be properly configured.
 
