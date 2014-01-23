@@ -37,8 +37,10 @@ def _prepare(context, url):
         return False
 
     alias = config.get(parts[0], None)
+
+    # Skip building new url when the alias does not exists.
     if alias is None:
-        return False
+        return url
 
     parts[0] = alias
 

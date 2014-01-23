@@ -21,7 +21,7 @@ class ThumborRootAliasLoaderTestCase(TestCase):
         self.assertFalse(thumbor_root_alias_loader.validate(context, url))
 
         url = "http://localhost/test.jpg"
-        self.assertFalse(thumbor_root_alias_loader.validate(context, url))
+        self.assertTrue(thumbor_root_alias_loader.validate(context, url))
 
     def test__prepare(self):
 
@@ -42,9 +42,11 @@ class ThumborRootAliasLoaderTestCase(TestCase):
         prepared = preparator(context, "#3#/test.jpg")
         self.assertEqual(prepared, "http://example.com/test.jpg")
 
+        prepared = preparator(context, "http://www.example.com/test.jpg")
+        self.assertTrue(prepared)
+
         prepared = preparator(context, "haha not working")
         self.assertFalse(prepared)
-
 
 
 class dotdictify(dict):
