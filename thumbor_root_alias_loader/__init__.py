@@ -7,6 +7,7 @@
 
     Overloads the thumbor's http_loader.
 """
+import urllib
 from thumbor.loaders import http_loader
 
 
@@ -36,7 +37,7 @@ def _prepare(context, url):
     if len(parts) != 2:
         return False
 
-    alias = config.get(parts[0], None)
+    alias = config.get(urllib.unquote(parts[0]), None)
 
     # Skip building new url when the alias does not exists.
     if alias is None:

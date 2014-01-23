@@ -23,13 +23,17 @@ class ThumborRootAliasLoaderTestCase(TestCase):
         url = "http://localhost/test.jpg"
         self.assertTrue(thumbor_root_alias_loader.validate(context, url))
 
+        url = "%24test%24/test.jpg"
+        self.assertTrue(thumbor_root_alias_loader.validate(context, url))
+
     def test__prepare(self):
 
         context = dotdictify({
             'config': {
                 'ROOT_ALIAS_LOADER_URLS': {
                     '#2#': 'http://test.com/added',
-                    '#3#': 'http://example.com'
+                    '#3#': 'http://example.com',
+                    '$test$': 'http://example.com'
                 }
             }
         })
@@ -40,6 +44,12 @@ class ThumborRootAliasLoaderTestCase(TestCase):
         self.assertEqual(prepared, "http://test.com/added/path/to/test.jpg")
 
         prepared = preparator(context, "#3#/test.jpg")
+        self.assertEqual(prepared, "http://example.com/test.jpg")
+
+        prepared = preparator(context, "%24test%24/test.jpg")
+        self.assertTrue(prepared)
+
+        prepared = preparator(context, "$test$/test.jpg")
         self.assertEqual(prepared, "http://example.com/test.jpg")
 
         prepared = preparator(context, "http://www.example.com/test.jpg")
